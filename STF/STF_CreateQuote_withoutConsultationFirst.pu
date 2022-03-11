@@ -3,6 +3,9 @@
 @startuml
 
     actor "STF" as STF
+    participant "UI" as UI
+    participant "Backend" as Backend
+    participant "Database" as Database
 
     note over STF, UI #GreenYellow
         1. It should be possible to automatically
@@ -27,13 +30,15 @@
         end note
 
         STF -> UI: Click //Next// button
-        UI -> Database: Save data from this page
+        UI -> Backend: Save data from this page
+        Backend -> Database: Save data from this page
     end group
 
     group Agent / Referrer Details Page
         STF -> UI: Enter details about the Agent / Referrer
         STF -> UI: Click //Next// button
-        UI -> Database: Save data from this page
+        UI -> Backend: Save data from this page
+        Backend -> Database: Save data from this page
     end group
 
     group Install & Access Page
@@ -52,7 +57,8 @@
         end
 
         STF -> UI: Click //Next// button
-        UI -> Database: Save data from this page
+        UI -> Backend: Save data from this page
+        Backend -> Database: Save data from this page
     end group
 
     group Brief Page
@@ -112,7 +118,8 @@
         end note
 
         STF -> UI: Click //Next// button
-        UI -> Database: Save data from this page
+        UI -> Backend: Save data from this page
+        Backend -> Database: Save data from this page
     end group
 
     group Summary Page
@@ -129,17 +136,14 @@
                 Go back to //Styling Proposal// Page
             end ref
         else STF clicked Next
-            UI -> Database: Save all data
-            ref over STF, UI
-                Go to //Done// Page
-            end ref
+            UI -> Backend: Save all data
+            Backend -> Database: Save all data
+            group Done Page
+                note over STF, UI #White
+                    Show the //Done// Page
+                end note
+            end group
         end
     end group
     
-    group Done Page
-        note over STF, Backend
-            Show the //Done// Page
-        end note
-    end group
-
 @enduml

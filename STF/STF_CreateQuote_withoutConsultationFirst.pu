@@ -5,18 +5,20 @@
     actor "STF" as STF
 
     note over STF, UI #GreenYellow
-        It should be possible to automatically
-        get data from an existing Consultation
+        1. It should be possible to automatically
+           get data from an existing Consultation
+
+        2. Data is every page is saved to database
+           so that the user doesn't have to type everything again
+           in case his connection got disconnected.
     end note
 
     group Job Page 
         STF  -> UI: Click //Start a Job// button
-        UI -> UI: Show //Create a Job// page
     end group
     
-    group Start a Quote 
+    group Start a Quote Page
         STF -> UI: Click //Start a Quote// button
-        UI -> UI: Show //Start a Quote// page
         STF -> UI: Enter details about the Client
 
         note over STF, UI #White
@@ -25,16 +27,16 @@
         end note
 
         STF -> UI: Click //Next// button
+        UI -> Database: Save data from this page
     end group
 
-    group Agent / Referrer Details 
-        UI -> UI: Show //Agent / Referrer Details// page
+    group Agent / Referrer Details Page
         STF -> UI: Enter details about the Agent / Referrer
         STF -> UI: Click //Next// button
+        UI -> Database: Save data from this page
     end group
 
-    group Install & Access
-        UI -> UI: Show //Install & Access// page
+    group Install & Access Page
         STF -> UI: Enter the following details
         note over STF, UI #White
             * Access Via
@@ -50,9 +52,10 @@
         end
 
         STF -> UI: Click //Next// button
+        UI -> Database: Save data from this page
     end group
 
-    group Brief
+    group Brief Page
         UI -> UI: Show //Brief// page
         STF -> UI: Select **one or multiple** items for the desired look and feel
 
@@ -68,15 +71,57 @@
         end note
 
         STF -> UI: Click //Next// button
+        UI -> Database: Save data from this page
     end group
 
-    group Styling Proposal
+    group Styling Proposal Page
         STF -> UI: Select desired **Mood Board**
 
         note over STF, UI #PaleVioletRed
             What is Mood Board?
             How is it different from the
             //Look and Feel// Section in the //Brief// page?
+        end note
+
+        STF -> UI: Add all the desired rooms
+
+        note over STF, UI #PaleVioletRed
+            Need to know what is the difference between a //Room// 
+            and an //Optional Room//
+
+            Will this affect the final billing, one will show the price 
+            without the optional items, and one shows all of them?
+        end note
+
+        loop Each of the Rooms
+            STF -> UI: STF chooses furniture(s)
+        end
+
+        STF -> UI: Add all the additional Services required
+
+        loop Each of the Services
+            STF -> UI: Add information as to the type of service required
+        end
+
+        note over STF, UI #PaleVioletRed
+            What is so special about Bespoke Services?
+        end note
+
+        loop Each of the //Bespoke// Services
+            STF -> UI: Add information about each Bespoke Service required
+        end note
+
+        STF -> UI: Click //Next// button
+        UI -> Database: Save data from this page
+    end group
+
+    group Summary Page
+        Database -> Backend: Perform calculations
+        Backend -> UI: Display a Summary of costs
+
+        note over UI, Backend
+            See Confluence page for detailed information
+            related to computations
         end note
     end group
     

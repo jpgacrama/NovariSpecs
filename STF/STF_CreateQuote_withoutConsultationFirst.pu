@@ -123,8 +123,23 @@
             See Confluence page for detailed information
             related to computations
         end note
+
+        alt STF clicked continue editing
+            ref over STF, UI
+                Go back to //Styling Proposal// Page
+            end ref
+        else STF clicked Next
+            UI -> Database: Save all data
+            ref over STF, UI
+                Go to //Done// Page
+            end ref
+        end
     end group
     
-    UI -> Database: Save all data
+    group Done Page
+        note over STF, Backend
+            Show the //Done// Page
+        end note
+    end group
 
 @enduml

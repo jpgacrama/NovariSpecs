@@ -1,0 +1,60 @@
+' STF creates Quotes without first creating a consultation
+
+@startuml
+
+    actor "STF" as STF
+
+    group Job Page 
+        STF  -> UI: Click //Start a Job// button
+        UI -> UI: Show //Create a Job// page
+    end group
+    
+    group Start a Quote 
+        STF -> UI: Click //Start a Quote// button
+        UI -> UI: Show //Start a Quote// page
+        STF -> UI: Enter details about the Client
+
+        note over STF, UI
+            * Client Details
+            * Additional Client Details
+        end note
+
+        STF -> UI: Click //Next// button
+    end group
+
+    group Start a Quote 
+        UI -> UI: Show //Agent / Referrer Details// page
+        STF -> UI: Enter details about the Agent / Referrer
+        STF -> UI: Click //Next// button
+    end group
+
+    group Install & Access
+        UI -> UI: Show //Install & Access// page
+        STF -> UI: Enter the following details
+        note over STF, UI
+            * Access Via
+            * Occupancy 
+            * Install Date
+            * Install Access Notes
+        end note
+
+        opt STF wants to add Lift information
+            STF -> UI: Click //Add Lift Info// button 
+            UI -> UI: Expand section for STF to add lift Info
+            STF -> UI: Enter Lift details.
+        end
+
+        STF -> UI: Click //Next// button
+    end group
+
+    group Brief
+        UI -> UI: Show //Brief// page
+    end group
+    
+    UI -> Database: Save all data
+
+    note over STF, Database 
+        It should be possible to
+        reuse this data by the Quotes module
+    end note
+@enduml

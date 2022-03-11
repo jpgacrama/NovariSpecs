@@ -1,0 +1,21 @@
+' STF wants to create Consultations
+
+@startuml
+
+    actor "STF" as STF
+
+    STF  -> UI: Click //Start a Job// button
+    UI -> UI: Show //Create a Job// page
+    STF -> UI: Click //Book a Consult// button
+    UI -> UI: Show //Book a Consult// page
+    STF -> UI: Enter the following details\n\t1. Client Details\n\t2. Agent Details\n\t3. Consult Details
+
+    STF -> UI: Click //Book// button
+
+    UI -> Database: Save all data
+
+    note over STF, Database 
+        It should be possible to
+        reuse this data by the Quotes module
+    end note
+@enduml

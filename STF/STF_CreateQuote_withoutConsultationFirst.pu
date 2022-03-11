@@ -4,6 +4,11 @@
 
     actor "STF" as STF
 
+    note over STF, UI #GreenYellow
+        It should be possible to automatically
+        get data from an existing Consultation
+    end note
+
     group Job Page 
         STF  -> UI: Click //Start a Job// button
         UI -> UI: Show //Create a Job// page
@@ -14,7 +19,7 @@
         UI -> UI: Show //Start a Quote// page
         STF -> UI: Enter details about the Client
 
-        note over STF, UI
+        note over STF, UI #White
             * Client Details
             * Additional Client Details
         end note
@@ -22,7 +27,7 @@
         STF -> UI: Click //Next// button
     end group
 
-    group Start a Quote 
+    group Agent / Referrer Details 
         UI -> UI: Show //Agent / Referrer Details// page
         STF -> UI: Enter details about the Agent / Referrer
         STF -> UI: Click //Next// button
@@ -31,7 +36,7 @@
     group Install & Access
         UI -> UI: Show //Install & Access// page
         STF -> UI: Enter the following details
-        note over STF, UI
+        note over STF, UI #White
             * Access Via
             * Occupancy 
             * Install Date
@@ -49,12 +54,32 @@
 
     group Brief
         UI -> UI: Show //Brief// page
+        STF -> UI: Select **one or multiple** items for the desired look and feel
+
+        note over STF, UI #PaleVioletRed
+            We need to know whether STF can
+            select multiple items for //Look and Feel// values.
+        end note
+        
+        STF -> UI: Writes notes regarding pages in Portfolio that
+        note over STF, UI #White
+            * Clients love
+            * Clients Do **NOT** love
+        end note
+
+        STF -> UI: Click //Next// button
+    end group
+
+    group Styling Proposal
+        STF -> UI: Select desired **Mood Board**
+
+        note over STF, UI #PaleVioletRed
+            What is Mood Board?
+            How is it different from the
+            //Look and Feel// Section in the //Brief// page?
+        end note
     end group
     
     UI -> Database: Save all data
 
-    note over STF, Database 
-        It should be possible to
-        reuse this data by the Quotes module
-    end note
 @enduml

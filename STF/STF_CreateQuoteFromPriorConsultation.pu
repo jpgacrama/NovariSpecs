@@ -1,0 +1,33 @@
+@startuml
+    title STF creates Quotes without first creating a consultation
+
+    actor "STF" as STF
+    
+    STF -> UI: Go to //Your Quotes & Consultations Page//
+    STF -> UI: Select Row with Status //Consultation//
+    UI -> UI: Opens //Book a Consult// Page
+
+    group Book a Consult Page
+        UI -> Backend: Fetch data associated with the specific Consultation
+        Backend -> Database: Fetch data associated with the specific Consultation
+        Database -> Backend: Return data
+        Backend -> UI: Display data 
+
+        UI -> STF: Shows details from Previous Consultation
+    end group
+
+    alt STF clicks Book
+        UI -> Backend: Update consultation to booking
+        Backend -> Database: Update consultation to booking
+        Database -> Backend: //Success//
+        Backend -> UI: //Success//
+
+        note over STF, UI
+            //Done// page is displayed
+        end note
+    else STF clicks Cancel
+        note over STF, UI
+            UI displays //Your Quotes & Consultations// Page again
+        end note
+    end
+@enduml

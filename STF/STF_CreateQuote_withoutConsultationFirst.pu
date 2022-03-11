@@ -2,6 +2,8 @@
 
 @startuml
 
+    title STF creates Quotes without first creating a consultation
+    
     actor "STF" as STF
     participant "UI" as UI
     participant "Backend" as Backend

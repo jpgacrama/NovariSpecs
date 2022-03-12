@@ -1,0 +1,69 @@
+' Shows the transitions of Job from Ready for Delivery To Completed
+
+@startuml
+    title STF: Job state flow from //Ready for Delivery// until //Completed//
+    start
+    :HUB staff checks which Jobs
+    are //Ready for Picking//;
+    
+    note right
+        STF and HUB will see the Job
+        as //Ready for Delivery//
+    end note
+
+    :HUB staff will assign the
+    Job to a specific truck bay;
+
+    :HUB staff will scan the items
+    and place them in the appropriate truck bays;
+
+    note right #GreenYellow
+        This differs from the
+        algorithm in the app.
+    end note
+
+    :HUB staff will place the items inside the truck;
+    :Truck driver scans the items using
+    the RFID scanner inside the truck;
+
+    note right #PaleVioletRed
+        Shouldn't there be an
+        //In Transit// state?
+    end note
+
+    :Truck Driver reaches Job Site;
+    :Truck Driver scans the items which
+    will be offloaded to the Job Site;
+
+    note right
+        Job state will change
+        to //On Job Site//
+    end note
+
+    #SpringGreen:Client's event is finished;
+    :Truck driver arrives on the Job Site;
+    :Truck driver scans the items;
+
+    if(Are some items missing?) then (Yes)
+        :Truck driver marks the item as //Missing//;
+
+        note left #PaleVioletRed
+            Clarify if Products
+            have //Missing// status?
+        end note
+
+    elseif(Do some items need repairing?) then (Yes)
+        :Truck driver marks the item as //Needing repair//;
+
+        note left #PaleVioletRed
+            Don't we need this kind of state?
+        end note
+    else(All loaned items\nare in good condition)
+    endif
+
+    :Job state is updated to //Pick-Up//;
+    :Truck driver arrived at the HUB;
+    :HUB staff unloads all the items;
+    :Job state changes to //Completed//;
+    stop
+@enduml

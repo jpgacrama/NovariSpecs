@@ -8,17 +8,26 @@
     start
     :STF clicks Quotes section;
     :STF selects a Job with an //Open Quote// status;
-    #PaleGreen: Everything below this is pure speculation;
-    :STF clicks an icon to convert the //Open Quote// into a Job;
+    
+    if () then (click the small icon to the\nleft of //Open Quote// status)
+        #PaleGreen: Everything below this is pure speculation;
+        :STF clicks an icon to convert the //Open Quote// into a Job;
 
-    note #PaleVioletRed
-        Which icon should I click as
-        there are 4 small icons
-        to the left of the //Open Quote// state?
-    end note
+        note #PaleVioletRed
+            Which icon should I click as
+            there are 4 small icons
+            to the left of the //Open Quote// state?
+        end note
 
-    :UI shows the summary page;
-    :STF clicks //Convert to Job// icon;
-    :The Open Quote is now converted to a //Job//;
+        :UI shows the summary page;
+        :STF clicks //Convert to Job// icon;
+        :The Open Quote is now converted to a //Job//;
+    else (click //Open Quote// text)
+        :STF clicks //Client Quote// button;
+        if () then (Client accepts\nSTF's proposal)
+            ://Open Quote// status now turns to //Job//;
+        else(Client does not accept)
+        endif
+    endif
     stop
 @enduml

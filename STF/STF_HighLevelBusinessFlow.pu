@@ -1,5 +1,5 @@
 @startuml
-    title STF: High-level Business Flow
+    title STF: High-level Business Flow until //Open Quote// Status
     start
     :STF clicks //Start a Job// button;
 
@@ -27,5 +27,6 @@
             :STF sees a summary of his/her Quotation;
         endif
     endif
+    :Quote now has a status of //Open Quote//;
     stop
 @enduml

@@ -19,7 +19,7 @@
             to the left of the //Open Quote// state?
         end note
 
-        :UI shows the summary page;
+        :UI shows the Summary page;
         :STF clicks //Convert to Job// icon;
     else (click //Open Quote// text)
         :STF clicks //Client Quote// button;

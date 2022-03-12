@@ -1,0 +1,41 @@
+' Contains the High-level flow of Jobs
+' Pre-requisite: Quote has been approved by Client
+
+@startuml
+    title STF: High-level Business Flow for Jobs
+    start
+    :STF clicks //Jobs// button;
+    :STF clicks the job with //Selection// status;
+    
+    if (STF wants to\nadd a room?) then (Yes)
+        #GreenYellow:STF adds a room;
+
+        note left
+            Does this mean that when STF adds a room
+            which is **NOT** part of the original quote,
+            that the furniture(s) and service(s) for
+            the said room(s) are **FREE**?
+        end note
+    elseif (STF wants to View Quote?) then (Yes)
+        ://Your Styling Proposal// view is shown;
+    elseif (STF wants to Archive the Job?) then (Yes)
+        :STF enters the Job number in the dialog box;
+        :STF clicks the //Archive// button;
+            
+            :View goes back to The //Job// page;
+    else(No)
+        :STF sticks to the\nnumber of rooms\nin the Quote;
+    endif
+
+    repeat :STF chooses furniture(s) for the room;
+        :STF chooses the number of items
+            for the specific furniture(s);
+        :STF clicks //Add to selection// button;
+    repeat while (Are there other rooms?) is (yes)
+    
+    #GreenYellow:There is no option to Add Services
+    once Quote has been accepted by client.
+    I need to verify this.;
+    
+    stop
+@enduml

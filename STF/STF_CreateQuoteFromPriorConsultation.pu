@@ -1,5 +1,5 @@
 @startuml
-    title STF creates Quotes without first creating a consultation
+    title STF creates Quotes with data from a Prior Consultation
 
     actor "STF" as STF
     

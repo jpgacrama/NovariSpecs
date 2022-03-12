@@ -1,0 +1,26 @@
+@startuml
+    title STF: High-level Business Flow
+    start
+    :STF clicks //Start a Job// button;
+
+    if (Book a Consult) then (yes)
+        :Enter Details about:
+            1. Client
+            2. Agent
+            3. Consult Details;
+
+        :STF clicks //Book// button;
+    else (Start a Quote)
+        :STF enters the following:
+            1. Client(s) Details
+            2. Agent / Referrer details
+            3. Install and Access details
+            4. information about the desired look and feel
+            5. Styling Proposal
+            6. Additional Services;
+
+        :STF sees a summary of his/her Quotation;
+
+    endif
+    stop
+@enduml

@@ -6,26 +6,45 @@
     start
     :STF clicks //Jobs// button;
     :STF clicks the job with //Selection// status;
-    
-    if (STF wants to\nadd a room?) then (Yes)
-        #GreenYellow:STF adds a room;
 
-        note left
-            Does this mean that when STF adds a room
-            which is **NOT** part of the original quote,
-            that the furniture(s) and service(s) for
-            the said room(s) are **FREE**?
-        end note
-    elseif (STF wants to View Quote?) then (Yes)
-        ://Your Styling Proposal// view is shown;
-    elseif (STF wants to Archive the Job?) then (Yes)
-        :STF enters the Job number in the dialog box;
-        :STF clicks the //Archive// button;
-            
-            :View goes back to The //Job// page;
-    else(No)
-        :STF sticks to the\nnumber of rooms\nin the Quote;
-    endif
+    fork
+        if (STF wants to\nadd a room?) then (Yes)
+            #GreenYellow:STF adds a room;
+
+            note left
+                Does this mean that when STF adds a room
+                which is **NOT** part of the original quote,
+                that the furniture(s) and service(s) for
+                the said room(s) are **FREE**?
+            end note
+        else(No)
+            :STF sticks to the\nnumber of rooms\nin the Quote;
+        endif
+    fork again
+        if (STF wants to View Quote?) then (Yes)
+            ://Your Styling Proposal// view is shown;
+            :STF clicks the //Accept Proposal// button;
+
+            note right #PaleVioletRed
+                No //Back// button or
+                //X// button is shown
+            end note
+        endif
+    fork again
+        if (STF wants to cancel the Job?) then (Yes)
+            :STF enters the Job number in the dialog box;
+            :STF clicks the //Archive// button;
+
+            note right
+                Why is the dialog box asking if STF wants to
+                //"archive"// the job when //Cancel Job//
+                button is clicked?
+            end note
+        else (//Cancel// button is clicked)
+        endif
+    end fork
+    
+    #SkyBlue:View is in the  //Job// page;
 
     repeat :STF chooses furniture(s) for the room;
         :STF chooses the number of items

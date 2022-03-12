@@ -8,6 +8,7 @@
     UI -> UI: Opens //Book a Consult// Page
 
     group Book a Consult Page
+        STF -> UI: Click //Book// button
         UI -> Backend: Fetch data associated with the specific Consultation
         Backend -> Database: Fetch data associated with the specific Consultation
         Database -> Backend: Return data

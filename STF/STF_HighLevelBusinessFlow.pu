@@ -3,24 +3,29 @@
     start
     :STF clicks //Start a Job// button;
 
-    if (Book a Consult) then (yes)
-        :Enter Details about:
-            1. Client
-            2. Agent
-            3. Consult Details;
-
+    if (Prior Consultation exists?) then (Yes)
+        :Go to //Your Quotes & Consultations Page//;
+        :Select Row with Status //Consultation//;
         :STF clicks //Book// button;
-    else (Start a Quote)
-        :STF enters the following:
-            1. Client(s) Details
-            2. Agent / Referrer details
-            3. Install and Access details
-            4. information about the desired look and feel
-            5. Styling Proposal
-            6. Additional Services;
+    else (No. So STF clicks //Start a Job//)
+        if (Book a Consult?) then (Yes)
+            :Enter Details about:
+                1. Client
+                2. Agent
+                3. Consult Details;
 
-        :STF sees a summary of his/her Quotation;
+            :STF clicks //Book// button;
+        else (No. STF clicks //Start a Quote//)
+            :STF enters the following:
+                1. Client(s) Details
+                2. Agent / Referrer details
+                3. Install and Access details
+                4. information about the desired look and feel
+                5. Styling Proposal
+                6. Additional Services;
 
+            :STF sees a summary of his/her Quotation;
+        endif
     endif
     stop
 @enduml

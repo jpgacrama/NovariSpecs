@@ -1,0 +1,24 @@
+' Diagram containing flow from Open Quote state to Job
+' NOTE:
+' This is pure speculation on my end since wireframes
+' are not clear as to how this should work
+
+@startuml
+    title STF: High-level Business Flow from //Open Quote// to //Job// status
+    start
+    :STF clicks Quotes section;
+    :STF selects a Job with an //Open Quote// status;
+    #PaleGreen: Everything below this is pure speculation;
+    :STF clicks an icon to convert the //Open Quote// into a Job;
+
+    note #PaleVioletRed
+        Which icon should I click as
+        there are 4 small icons
+        to the left of the //Open Quote// state?
+    end note
+
+    :UI shows the summary page;
+    :STF clicks //Convert to Job// icon;
+    :The Open Quote is now converted to a //Job//;
+    stop
+@enduml

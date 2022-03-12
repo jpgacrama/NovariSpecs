@@ -4,12 +4,12 @@
 ' are not clear as to how this should work
 
 @startuml
-    title STF: High-level Business Flow from //Open Quote// to //Job// status
+    title STF: High-level Business Flow from //Open Quote// to //Job// state
     start
     :STF clicks Quotes section;
-    :STF selects a Job with an //Open Quote// status;
+    :STF selects a Job with an //Open Quote// state;
     
-    if () then (click the small icon to the\nleft of //Open Quote// status)
+    if () then (click the small icon to the\nleft of //Open Quote// state)
         #PaleGreen: Everything below this is pure speculation;
         :STF clicks an icon to convert the //Open Quote// into a Job;
 

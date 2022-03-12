@@ -1,11 +1,11 @@
 @startuml
-    title STF: High-level Business Flow until //Open Quote// Status
+    title STF: High-level Business Flow until //Open Quote// State
     start
     :STF clicks //Start a Job// button;
 
     if (Prior Consultation exists?) then (Yes)
         :Go to //Your Quotes & Consultations Page//;
-        :Select Row with Status //Consultation//;
+        :Select Row with //Consultation// as its state;
         :STF clicks //Book// button;
     else (No. So STF clicks //Start a Job//)
         if (Book a Consult?) then (Yes)
@@ -27,6 +27,6 @@
             :STF sees a summary of his/her Quotation;
         endif
     endif
-    :Quote now has a status of //Open Quote//;
+    :Quote now has a state of //Open Quote//;
     stop
 @enduml

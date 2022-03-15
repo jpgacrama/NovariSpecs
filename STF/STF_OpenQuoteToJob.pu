@@ -10,6 +10,14 @@
     :STF selects a Job with an //Open Quote// state;
     
     if () then (Click the **Pencil** icon to the\nleft of //Open Quote// state)
+    else (click //Open Quote// text)
+
+    note
+        Both of these branches lead
+        to the //Summary Page//
+    end note
+    
+    endif
         :UI shows the Summary page;
         :STF clicks //Next//;
         
@@ -24,7 +32,7 @@
             It is **NOT** possible to
             send an email from the website YET. 
 
-            However, I need to clarify this.
+            However, I need to clarify this expectation.
         end note
 
         if (Client approves quote?) then (Yes)
@@ -36,17 +44,5 @@
                 There is no //Rejected// state yet.
             end note
         endif
-    else (click //Open Quote// text)
-        :STF clicks //Client Quote// button;
-        if (Client accepts STF's proposal?) then (Yes)
-            #SkyBlue:Quote becomes a //Job//;
-        else(No)
-            #OrangeRed:Quote becomes //Rejected//;
-
-            note right
-                There is no //Rejected// state yet.
-            end note
-        endif
-    endif
     stop
 @enduml

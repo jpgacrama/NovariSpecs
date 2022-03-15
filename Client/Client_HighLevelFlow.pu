@@ -11,7 +11,7 @@
     :STF determines the type of Transaction;
 
     fork
-        :Client only wants a consultation;
+        #Orchid:Client only wants a consultation;
         :STF Enters the following details:
             1. Client
             2. Agent
@@ -19,13 +19,73 @@
         :STF clicks //Save to Calendar// button
         so that the consultation is "booked";
         
-        #YellowGreen:Client pays the Consultation fee
+        #GreenYellow:Client pays the Consultation fee
         once consultation is done;
 
         note left
-            Need to add this
-            part to wireframe
+            Need to create new
+            wireframes starting from here
+        end note
+
+        :Client receives invoice;
+        #SkyBlue:What state signifies that
+        Consultation is done and client does
+        not want to progress to receiving a quote?;
+    
+    fork again
+        #Orchid:Client wants to continue having a
+        Quote coming from a prior consultation;
+
+        :STF is directed to //Client's Details// page;
+        :STF enters the following information:
+            1. Client(s) Details - **//Pre-filled already//**
+            2. Agent / Referrer details - **//Pre-filled already//**
+            3. Install and Access details
+            4. Information about the desired look and feel
+            5. Styling Proposal
+            6. Additional Services;
+
+        note right
+            STF can make edits to //Pre-filled// items,
+            but they are pre-filled by default since data came
+            from a prior consultation.
+        end note
+
+        :STF sends the link to his/her Quote to the client;
+
+        if (Client accepts the quote?) then (Yes)
+            #SkyBlue:Quote becomes a Job;
+        else (No)
+            #SkyBlue:Quote should
+            have a //Rejected// state;
+        endif
+
+        note right
+            There is no //Rejected// State for Quotes.
         end note
     fork again
+        #Orchid:Client wants to
+        immediately have a quotation;
+
+        :STF enters the following:
+            1. Client(s) Details
+            2. Agent / Referrer details
+            3. Install and Access details
+            4. Information about the desired look and feel
+            5. Styling Proposal
+            6. Additional Services;
+
+        #GreenYellow:STF sends a summary of the
+        quotation to Client;
+
+        note right
+            Flow of wireframes leading to the view
+            where Client sees STF's proposal is **WRONG**
+        end note
+
+        #SkyBlue:Client accepts STF's quotation.
+        It becomes a //Job// only at this time;
     end fork
+
+    stop
 @enduml

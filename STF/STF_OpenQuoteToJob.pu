@@ -9,25 +9,44 @@
     :STF clicks Quotes section;
     :STF selects a Job with an //Open Quote// state;
     
-    if () then (click the small icon to the\nleft of //Open Quote// state)
-        #PaleGreen: Everything below this is pure speculation;
-        :STF clicks an icon to convert the //Open Quote// into a Job;
+    if () then (Click the **Pencil** icon to the\nleft of //Open Quote// state)
+        :UI shows the Summary page;
+        :STF clicks //Next//;
+        
+        note left
+            //Done// page is shown.
+        end note
+        :STF clicks //Copy Quote Link//;
+        :STF sends an email to Client containing
+        the //Quote Link//;
 
-        note #PaleVioletRed
-            Which icon should I click as
-            there are 4 small icons
-            to the left of the //Open Quote// state?
+        note left #OrangeRed
+            It is **NOT** possible to
+            send an email from the website YET. 
+
+            However, I need to clarify this.
         end note
 
-        :UI shows the Summary page;
-        :STF clicks //Convert to Job// icon;
+        if (Client approves quote?) then (Yes)
+            #SkyBlue:Quote becomes a //Job//;
+        else (No)
+            #OrangeRed:Quote becomes //Rejected//;
+
+            note right
+                There is no //Rejected// state yet.
+            end note
+        endif
     else (click //Open Quote// text)
         :STF clicks //Client Quote// button;
-        if () then (Client does not accept)
-            stop
-        else(Client accepts\nSTF's proposal)
+        if (Client accepts STF's proposal?) then (Yes)
+            #SkyBlue:Quote becomes a //Job//;
+        else(No)
+            #OrangeRed:Quote becomes //Rejected//;
+
+            note right
+                There is no //Rejected// state yet.
+            end note
         endif
     endif
-    :The Open Quote is now converted to a //Job//;
     stop
 @enduml

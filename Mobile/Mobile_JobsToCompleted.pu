@@ -1,7 +1,7 @@
 ' Shows the transitions of Job from Ready for Delivery To Completed
 
 @startuml
-    title STF: Job state flow from //Ready for Delivery// until //Completed//
+    title Mobile: Job state flow from //Ready for Delivery// until //Completed//
     start
     :HUB staff checks which Jobs
     are //Ready for Picking//;

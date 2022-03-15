@@ -4,3 +4,28 @@
 ' He/she is not a user to the Novari system
 ' which we are making
 
+@startuml
+    title View from Client's Perspective
+    start
+    :Client Contacts STF;
+    :STF determines the type of Transaction;
+
+    fork
+        :Client only wants a consultation;
+        :STF Enters the following details:
+            1. Client
+            2. Agent
+            3. Consult;
+        :STF clicks //Save to Calendar// button
+        so that the consultation is "booked";
+        
+        #YellowGreen:Client pays the Consultation fee
+        once consultation is done;
+
+        note left
+            Need to add this
+            part to wireframe
+        end note
+    fork again
+    end fork
+@enduml

@@ -1,0 +1,6 @@
+' Contains high-level flow frm Client's perspective
+' NOTE:
+' Client only sees the link to STF's proposal.
+' He/she is not a user to the Novari system
+' which we are making
+

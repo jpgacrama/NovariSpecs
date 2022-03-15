@@ -6,7 +6,12 @@
     if (Prior Consultation exists?) then (Yes)
         :Go to //Your Quotes & Consultations Page//;
         :Select Row with //Consultation// as its state;
-        :STF clicks //Book// button;
+        :STF clicks //Save to Calendar// button;
+        :STF should be able to view
+        this Consultation
+        in his/her calendar;
+        #SkyBlue:This remains in //Consultation// state;
+        stop
     else (No. So STF clicks //Start a Job//)
         if (Book a Consult?) then (Yes)
             :Enter Details about:
@@ -14,7 +19,14 @@
                 2. Agent
                 3. Consult Details;
 
-            :STF clicks //Book// button;
+            :STF clicks //Save to Calendar// button;
+
+            :STF should be able to view
+            this Consultation
+            in his/her calendar;
+            #SkyBlue:This remains in //Consultation// state;
+            stop
+
         else (No. STF clicks //Start a Quote//)
             :STF enters the following:
                 1. Client(s) Details
@@ -25,8 +37,17 @@
                 6. Additional Services;
 
             :STF sees a summary of his/her Quotation;
+            #SkyBlue:Quote now has a state of //Open Quote//;
+            :STF clicks //Next// button;
+            :STF sees the Done page;
+
+            note right #PaleVioletRed
+                STF can save the Open Quote
+                to his/her calendar using the
+                buttons from the Done Page
+            end note
+
+            stop
         endif
     endif
-    :Quote now has a state of //Open Quote//;
-    stop
 @enduml

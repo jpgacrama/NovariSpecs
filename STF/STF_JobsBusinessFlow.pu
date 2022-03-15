@@ -21,14 +21,19 @@
             :STF sticks to the\nnumber of rooms\nin the Quote;
         endif
     fork again
-        if (STF wants to View Quote?) then (Yes)
+        if (STF clicks //Client Quote?//) then (Yes)
             ://Your Styling Proposal// view is shown;
             :STF clicks the //Accept Proposal// button;
 
             note right #PaleVioletRed
-                No //Back// button or
-                //X// button is shown
+                **!!THIS IS WRONG!!** 
+                STF should not have this button.
+                Only client does.
+
+                Links to //Your Styling Proposal// have to be edited
+                to avoid confusion
             end note
+        else (No)
         endif
     fork again
         if (STF wants to cancel the Job?) then (Yes)
@@ -40,11 +45,18 @@
                 //"archive"// the job when //Cancel Job//
                 button is clicked?
             end note
-        else (//Cancel// button is clicked)
+            #SkyBlue:Job status becomes //Archived//;
+
+            note right #GreenYellow
+                There is no //Archived// status yet.
+                How should archived Jobs and/or Quotes be displayed?
+                Do they have a separate tab on the left of the main page?
+            end note
+        else (No)
         endif
     end fork
     
-    #SkyBlue:View is in the  //Job// page;
+    #SkyBlue:View is in the //Job// page;
 
     repeat :STF chooses furniture(s) for the room;
         :STF chooses the number of items

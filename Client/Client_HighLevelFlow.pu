@@ -28,6 +28,7 @@
         end note
 
         :Client receives invoice;
+        :Client pays for STF's service;
         #SkyBlue:What state signifies that
         Consultation is done and client does
         not want to progress to receiving a quote?;
@@ -58,11 +59,14 @@
         else (No)
             #SkyBlue:Quote should
             have a //Rejected// state;
+
+            note right
+                There is no //Rejected// State for Quotes.
+            end note
+            :Client receives invoice;
+            :Client pays for STF's service;
         endif
 
-        note right
-            There is no //Rejected// State for Quotes.
-        end note
     fork again
         #Orchid:Client wants to
         immediately have a quotation;

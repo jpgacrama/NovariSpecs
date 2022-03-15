@@ -55,7 +55,7 @@
         :STF sends the link to his/her Quote to the client;
 
         if (Client accepts the quote?) then (Yes)
-            #SkyBlue:Quote becomes a Job;
+            #SkyBlue:Quote becomes a //Job//;
         else (No)
             #SkyBlue:Quote should
             have a //Rejected// state;
@@ -82,13 +82,13 @@
         #GreenYellow:STF sends a summary of the
         quotation to Client;
 
-        note right
+        note right #OrangeRed
             Flow of wireframes leading to the view
             where Client sees STF's proposal is **WRONG**
         end note
 
         #SkyBlue:Client accepts STF's quotation.
-        It becomes a //Job// only at this time;
+        It becomes a //Job// at this time;
     end fork
 
     stop

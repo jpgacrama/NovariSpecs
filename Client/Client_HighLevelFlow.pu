@@ -57,7 +57,7 @@
         if (Client accepts the quote?) then (Yes)
             #SkyBlue:Quote becomes a //Job//;
         else (No)
-            #SkyBlue:Quote should
+            #OrangeRed:Quote should
             have a //Rejected// state;
 
             note right

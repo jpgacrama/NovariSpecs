@@ -55,6 +55,13 @@
         :STF sends the link to his/her Quote to the client;
 
         if (Client accepts the quote?) then (Yes)
+            :Client receives invoice;
+            :Client pays for STF's service;
+            note #LightPink
+                Client already pays even though
+                the furnitures are not yet delivered?
+            end note
+
             #SkyBlue:Quote becomes a //Job//;
         else (No)
             #OrangeRed:Quote should
@@ -87,9 +94,26 @@
             where Client sees STF's proposal is **WRONG**
         end note
 
-        #SkyBlue:Client accepts STF's quotation.
-        It becomes a //Job// at this time;
-    end fork
+        if (Client accepts the quote?) then (Yes)
+            #SkyBlue:Client accepts STF's quotation.
+            It becomes a //Job// at this time;
+            :Client receives invoice;
+            :Client pays for STF's service;
+            note #LightPink
+                Client already pays even though
+                the furnitures are not yet delivered?
+            end note
 
+        else (No)
+            #OrangeRed:Quote should
+            have a //Rejected// state;
+
+            note right
+                There is no //Rejected// State for Quotes.
+            end note
+            :Client receives invoice;
+            :Client pays for STF's service;
+        endif
+    end fork
     stop
 @enduml

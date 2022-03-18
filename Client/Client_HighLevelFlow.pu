@@ -19,19 +19,42 @@
         :STF clicks //Save to Calendar// button
         so that the consultation is "booked";
         
-        #GreenYellow:Client pays the Consultation fee
-        once consultation is done;
+        if (HUB requires payment\nfor Consultations?) then (Yes)
+            if (Client is undecided?) then (Yes)
+                :Consultation becomes //Pending//;
+                stop
+                note left #LightPink
+                    //Pending// state is
+                    not yet in wireframes;
+                end note
+            else (No)
+            endif
 
-        note left
-            Need to create new
-            wireframes starting from here
+            #GreenYellow:Client pays the Consultation fee
+            once consultation is done;
+
+            note left
+                Need to create new
+                wireframes starting from here
+            end note
+
+            :Client receives invoice;
+            :Client pays for STF's service;
+        elseif (Client is undecided?) then (Yes)
+            :Consultation becomes //Pending//;
+            note left #LightPink
+                //Pending// state is
+                not yet in wireframes;
+            end note
+        else (No)
+        endif
+            
+        #SkyBlue://Consultation Done// state is reached;
+        
+        note left #LightPink
+            //Consutation Done// status
+            is not in wireframes
         end note
-
-        :Client receives invoice;
-        :Client pays for STF's service;
-        #SkyBlue:What state signifies that
-        Consultation is done and client does
-        not want to progress to receiving a quote?;
     
     fork again
         #Orchid:Client wants to continue having a

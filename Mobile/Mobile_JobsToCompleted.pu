@@ -1,48 +1,61 @@
 ' Shows the transitions of Job from Ready for Delivery To Completed
 
 @startuml
-    title Mobile: Job state flow from //Ready for Delivery// until //Completed//
+    title Mobile: Job state flow
     start
+
+    #LightBlue:Job state is //Selection//;
+
     :HUB staff checks which Jobs
     are //Ready for Picking//;
-    
+
     note right
-        STF and HUB will see the Job
-        as //Ready for Delivery//
+        //Ready for Picking// is shown in the 
+        mobile app but //Selection// is shown in
+        both STF and HUB's views.
+    end note
+    
+    :HUB staff checks the
+    items needed for the job;
+
+    :HUB staff selects items from shelves,
+    scans them, and places them into box(es);
+
+    note right
+        The act of scanning assigns
+        a specific SKU to the Job.
     end note
 
-    :HUB staff will assign the
-    Job to a specific truck bay;
+    #SpringGreen:HUB Staff finishes selecting items;
+
+    :HUB staff will assign the Job 
+    **and all items he/she has picked**
+    to a specific truck bay;
+
+    #LightBlue:Job state will change to //Ready for Delivery//;
+
+    #SpringGreen:Truck arrives and waits at the specific truck bay;
 
     :HUB staff will scan the items
-    and place them in the appropriate truck bays;
-
-    note right #GreenYellow
-        This differs from the
-        algorithm in the app.
-    end note
-
-    :HUB staff will place the items inside the truck;
-    :Truck driver scans the items using
-    the RFID scanner inside the truck;
-
-    note right #PaleVioletRed
-        Shouldn't there be an
-        //In Transit// state?
-    end note
-
-    :Truck Driver reaches Job Site;
-    :Truck Driver scans the items which
+    and place them in the truck;
+    
+    #SpringGreen:Truck Driver reaches Job Site;
+    
+    :HUB Staff scans the items which
     will be offloaded to the Job Site;
 
     note right
-        Job state will change
-        to //On Job Site//
+        There is another HUB Staff
+        other than the driver who accompanies him/her to the site.
     end note
+
+    #LightBlue:Job state will change to //On Job Site//;
 
     #SpringGreen:Client's event is finished;
     :Truck driver arrives on the Job Site;
-    :Truck driver scans the items;
+    :HUB staff scans the items and loads them into the truck;
+    #LightBlue:Job state will change to //Pick-up//;
+
 
     if(Are some items missing?) then (Yes)
         :Truck driver marks the item as //Missing//;

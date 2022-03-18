@@ -56,27 +56,22 @@
     :HUB staff scans the items and loads them into the truck;
     #LightBlue:Job state will change to //Pick-up//;
 
-    :Job state is updated to //Pick-Up//;
     :Truck driver arrived at the HUB;
-    :HUB staff unloads all the items;
+    :HUB staff scans all the items as he/she unloads them;
+    #LightBlue:Job state will change to //Returned//;
+
+    note right
+        There is no //Returned// Job state.
+    end note
 
     if(Are some items missing?) then (Yes)
-        :Truck driver marks the item as //Missing//;
-
-        note left #PaleVioletRed
-            Clarify if Products
-            have //Missing// status?
-        end note
+        #PaleVioletRed:HUB Staff marks the item as //Missing//;
 
     elseif(Do some items need repairing?) then (Yes)
-        :Truck driver marks the item as //Needing repair//;
-
-        note left #PaleVioletRed
-            Don't we need this kind of state?
-        end note
-    else(All loaned items\nare in good condition)
+        #PaleVioletRed:HUB Staff marks the item as //Needing repair//;
+    else(All loaned items\nare returned\nin good condition)
     endif
 
-    :Job state changes to //Completed//;
+    #LightBlue:Job state changes to //Completed//;
     stop
 @enduml

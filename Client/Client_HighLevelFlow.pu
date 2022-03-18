@@ -121,14 +121,28 @@
             where Client sees STF's proposal is **WRONG**
         end note
 
+        if (Client is undecided?) then (Yes)
+            #OrangeRed:Quote becomes //Pending//;
+            note left #LightPink
+                //Pending// state is
+                not yet in wireframes;
+            end note
+            stop
+        else (No)
+        endif
+        
         if (Client accepts the quote?) then (Yes)
             #SkyBlue:Client accepts STF's quotation.
             It becomes a //Job// at this time;
             :Client receives invoice;
             :Client pays for STF's service;
-            note #LightPink
+            note
                 Client already pays even though
                 the furnitures are not yet delivered?
+
+                No. STF technically pays for it before
+                everything gets delivered. **But for MVP,**
+                **we assume that client pays first.**
             end note
 
         else (No)

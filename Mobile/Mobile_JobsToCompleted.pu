@@ -38,7 +38,7 @@
 
     :HUB staff will scan the items
     and place them in the truck;
-    
+
     #SpringGreen:Truck Driver reaches Job Site;
     
     :HUB Staff scans the items which
@@ -56,6 +56,9 @@
     :HUB staff scans the items and loads them into the truck;
     #LightBlue:Job state will change to //Pick-up//;
 
+    :Job state is updated to //Pick-Up//;
+    :Truck driver arrived at the HUB;
+    :HUB staff unloads all the items;
 
     if(Are some items missing?) then (Yes)
         :Truck driver marks the item as //Missing//;
@@ -74,9 +77,6 @@
     else(All loaned items\nare in good condition)
     endif
 
-    :Job state is updated to //Pick-Up//;
-    :Truck driver arrived at the HUB;
-    :HUB staff unloads all the items;
     :Job state changes to //Completed//;
     stop
 @enduml

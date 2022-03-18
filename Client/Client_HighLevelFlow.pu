@@ -94,6 +94,11 @@
         else (No)
             #OrangeRed:Quote now has a
             //Rejected// state;
+
+            note right #LightPink
+                //Rejected// state is
+                not in wireframes;
+            end note
         endif
 
     fork again

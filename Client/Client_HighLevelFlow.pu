@@ -20,12 +20,12 @@
         so that the consultation is "booked";
         
         if (Client is undecided?) then (Yes)
-            :Consultation becomes //Pending//;
-            stop
+            #OrangeRed:Consultation becomes //Pending//;
             note left #LightPink
                 //Pending// state is
                 not yet in wireframes;
             end note
+            stop
         else (No)
         endif
         
@@ -41,12 +41,6 @@
 
             :Client receives invoice;
             :Client pays for STF's service;
-        elseif (Client is undecided?) then (Yes)
-            :Consultation becomes //Pending//;
-            note left #LightPink
-                //Pending// state is
-                not yet in wireframes;
-            end note
         else (No)
         endif
             
@@ -77,6 +71,16 @@
         end note
 
         :STF sends the link to his/her Quote to the client;
+
+        if (Client is undecided?) then (Yes)
+            #OrangeRed:Consultation becomes //Pending//;
+            note left #LightPink
+                //Pending// state is
+                not yet in wireframes;
+            end note
+            stop
+        else (No)
+        endif
 
         if (Client accepts the quote?) then (Yes)
             :Client receives invoice;

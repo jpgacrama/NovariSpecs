@@ -73,7 +73,7 @@
         :STF sends the link to his/her Quote to the client;
 
         if (Client is undecided?) then (Yes)
-            #OrangeRed:Consultation becomes //Pending//;
+            #OrangeRed:Quote becomes //Pending//;
             note left #LightPink
                 //Pending// state is
                 not yet in wireframes;
@@ -92,14 +92,8 @@
 
             #SkyBlue:Quote becomes a //Job//;
         else (No)
-            #OrangeRed:Quote should
-            have a //Rejected// state;
-
-            note right
-                There is no //Rejected// State for Quotes.
-            end note
-            :Client receives invoice;
-            :Client pays for STF's service;
+            #OrangeRed:Quote now has a
+            //Rejected// state;
         endif
 
     fork again

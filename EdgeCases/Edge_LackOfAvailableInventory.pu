@@ -12,7 +12,7 @@
         within the required selection period
     end note
 
-    if (Are some items missing from HUB?) then (Yes)
+    if (Are some or **ALL** items missing from HUB?) then (Yes)
         fork
             :HUB Adds the required inventory to the system;
             #SkyBlue:HUB informs STF that the
@@ -28,7 +28,7 @@
             delay the install date and time
             until all items are available;
 
-            if (Client Accepts delays?) then (Yes)
+            if (Client Accepts delay?) then (Yes)
                 :STF changes the Installation Date and Time
                 based on the new agreed Date and Time;
 

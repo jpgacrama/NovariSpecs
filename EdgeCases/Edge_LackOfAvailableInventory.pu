@@ -1,0 +1,30 @@
+' Contains edge cases once some or all inventory items are missing
+' during the date of Installation
+
+
+@startuml
+    title Edge Cases
+    start
+    
+    :STF starts to select items from HUB;
+    note
+        Selection of items should happen
+        within the required selection period
+    end note
+
+    if (Are some items missing from HUB?) then (Yes)
+        :HUB Adds the required inventory to the system;
+        :HUB informs STF that the
+        items in question are available;
+
+        note #YellowGreen
+            Does this appear as an
+            icon in the dashboard,
+            a change of color, 
+            or something else?
+        end note
+    else (No)
+        :STF selects all the needed items;
+    endif
+
+@enduml

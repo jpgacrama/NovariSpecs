@@ -13,16 +13,25 @@
     end note
 
     if (Are some items missing from HUB?) then (Yes)
-        :HUB Adds the required inventory to the system;
-        :HUB informs STF that the
-        items in question are available;
+        fork
+            :HUB Adds the required inventory to the system;
+            :HUB informs STF that the
+            items in question are available;
+            note #YellowGreen
+                Does this appear as an
+                icon in the dashboard,
+                a change of color, 
+                or something else?
+            end note
+        fork again
+            :STF negotiates with Client to
+            delay the install date until all items are available;
 
-        note #YellowGreen
-            Does this appear as an
-            icon in the dashboard,
-            a change of color, 
-            or something else?
-        end note
+            if (Client Accepts delays?) then (Yes)
+            else (No)
+            endif
+        end fork
+
     else (No)
         :STF selects all the needed items;
     endif

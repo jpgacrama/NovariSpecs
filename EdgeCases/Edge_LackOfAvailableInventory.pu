@@ -15,7 +15,7 @@
     if (Are some items missing from HUB?) then (Yes)
         fork
             :HUB Adds the required inventory to the system;
-            :HUB informs STF that the
+            #SkyBlue:HUB informs STF that the
             items in question are available;
             note #YellowGreen
                 Does this appear as an
@@ -25,10 +25,32 @@
             end note
         fork again
             :STF negotiates with Client to
-            delay the install date until all items are available;
+            delay the install date and time
+            until all items are available;
 
             if (Client Accepts delays?) then (Yes)
+                :STF changes the Installation Date and Time
+                based on the new agreed Date and Time;
+
+                note right #PaleVioletRed
+                    I want to avoid another situation
+                    that someone else has reserved
+                    the items before me,
+                    thereby causing this delay.
+
+                    Is it possible to reserve even
+                    before the t - 7 day window?
+                end note
             else (No)
+                #SkyBlue:STF delivers the job with
+                some items still missing.;
+
+                :STF selects the furniture
+                that can be delivered;
+
+                #SkyBlue:Job continues as in normal case
+                but it should show an indication
+                that some items are **not** yet delivered;
             endif
         end fork
 

@@ -51,6 +51,16 @@ if (Are **SOME**s or **ALL** items missing from HUB?) then (Yes)
             #SkyBlue:Job continues as in normal case
             but it should show an indication
             that some items are **not** yet delivered;
+
+            note right #PaleVioletRed
+                We should have another state which 
+                tells STF that some items
+                still need to be delivered.
+            end note
+
+            #GreenYellow:Missing Items are now available in HUB;
+            :STF selects the needed pieces;
+            :STF triggers those items to be sent to client ASAP;
         endif
     end fork
 

@@ -60,66 +60,25 @@
         Backend -> Database: Save data from this page
     end group
 
-    group Brief Page
-        UI -> UI: Show //Brief// page
-        STF -> UI: Select **one or multiple** items for the desired look and feel
-
-        note over STF, UI #PaleVioletRed
-            We need to know whether STF can
-            select multiple items for //Look and Feel// values.
-        end note
-        
-        STF -> UI: Writes notes regarding pages in Portfolio that
-        note over STF, UI #White
-            * Clients love
-            * Clients Do **NOT** love
-        end note
-
-        STF -> UI: Click //Next// button
-        UI -> Database: Save data from this page
-    end group
-
     group Styling Proposal Page
-        STF -> UI: Select desired **Mood Board**
+        loop For all rooms
+            STF -> UI: Add a Room
+            UI -> UI: //Expands to show the options to style a room//
+            STF -> UI: Click Button to select the desired //Look and Feel//
+            UI -> UI: //UI Opens the Brief Page//
 
-        note over STF, UI #PaleVioletRed
-            What is Mood Board?
-            How is it different from the
-            //Look and Feel// Section in the //Brief// page?
-        end note
+            group Brief Page
+                STF -> UI: Select **one or multiple** items for the desired look and feel
+                STF -> UI: Writes puts data regarding the following\n\t- Clients Love\n\t- Clients Do **NOT** love\n\t- Expected Demographic\n\t- Alterations
+                STF -> UI: Click //Next// button
+                UI -> Backend: Save data from this page
+                Backend -> Database: Save data from this page
+            end group
 
-        STF -> UI: Add all the desired rooms
 
-        note over STF, UI #PaleVioletRed
-            Need to know what is the difference between a //Room// 
-            and an //Optional Room//
-
-            Will this affect the final billing, one will show the price 
-            without the optional items, and one shows all of them?
-        end note
-
-        loop Each of the Rooms
-            STF -> UI: STF chooses furniture(s)
-        end
-
-        STF -> UI: Add all the additional Services required
-
-        loop Each of the Services
-            STF -> UI: Add information as to the type of service required
-        end
-
-        note over STF, UI #PaleVioletRed
-            What is so special about Bespoke Services?
-        end note
-
-        loop Each of the //Bespoke// Services
-            STF -> UI: Add information about each Bespoke Service required
-        end note
-
-        STF -> UI: Click //Next// button
-        UI -> Backend: Save data from this page
-        Backend -> Database: Save data from this page
+        end loop
     end group
+
 
     group Summary Page
         Database -> Backend: Perform calculations

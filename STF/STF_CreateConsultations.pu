@@ -18,6 +18,7 @@
 
     note over STF, Database 
         It should be possible to
-        reuse this data by the Quotes module
+        reuse this data when a Consult
+        is converted to a Quote
     end note
 @enduml

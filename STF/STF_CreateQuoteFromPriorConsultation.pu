@@ -1,57 +1,30 @@
 @startuml
     title STF creates Quotes with data from a Prior Consultation
+    start
+    
+    if (STF goes to Consultations Dashboard?) then (Yes)
+        :STF clicks the Chevron (>>) button;
+        :UI displays Client Details;
+        :STF clicks //Next//;
+        :UI displays Agent Details;
+    else (STF clicks\nStart a Job)
+        :STF enters the client's name
+        in the Search field;
+        if (A record of the client's name exists?) then (Yes)
+            :UI shows a small pop-up
+            window that STF can select;
+            :STF selects the desired Client details;
+            :UI displays Client Details;
+            :STF clicks //Next//;
+            :UI displays Agent Details;
+        else (No)
+            #LimeGreen:STF enters the client's
+            details and his/her Agent;
+        endif
+    endif
 
-    actor "STF" as STF
+    #LimeGreen:See <u>//STF creates Quotes without first creating a consultation//</u> diagram;
 
-    opt STF goes to Quotes Dashboard page
-        STF -> UI: Go to //Your Consultations Page//
-        STF -> UI: Select Row with Status //Consultation//
-        UI -> UI: Opens //Book a Consult// Page
+    stop
 
-        group Book a Consult Page
-            STF -> UI: Click //Book// button
-            UI -> Backend: Fetch data associated with the specific Consultation
-            Backend -> Database: Fetch data associated with the specific Consultation
-            Database -> Backend: Return data
-            Backend -> UI: Display data 
-
-            UI -> STF: Shows details from Previous Consultation
-        end group
-
-        alt STF clicks Book
-            UI -> Backend: Update consultation to booking
-            Backend -> Database: Update consultation to booking
-            Database -> Backend: //Success//
-            Backend -> UI: //Success//
-
-            UI -> UI: //Done// page is displayed
-            STF -> UI: Clicks //Push to Calendar//
-
-            note over STF, UI #LawnGreen
-                Isn't it better to automatically
-                send the consultation details to STF's calendar 
-                once he/she clicks //Book//?
-            end note
-        else STF clicks Cancel
-            note over STF, UI
-                UI displays //Your Quotes & Consultations// Page again
-            end note
-        end
-    else STF clicks //Start a Job// from the main screen
-        STF -> UI: Click //Start a Quote//
-        STF -> UI: Type the first few letters of client's name in the search bar
-        opt Prior data DOES NOT exist
-            ref over STF, Database
-                Refer to section //"Creating Quote **without** prior consultation"//
-            end ref
-        else Prior Data Exists
-            UI -> UI: A pop-up is displayed showing the client's details
-            STF -> UI: STF selects the desired client
-            UI -> Backend: Fetch data associated with the specific Consultation
-            Backend -> Database: Fetch data associated with the specific Consultation
-            Database -> Backend: Return data
-            Backend -> UI: Display data 
-            UI -> STF: Shows details from Previous Consultation
-        end
-    end
 @enduml

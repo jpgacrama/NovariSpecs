@@ -16,9 +16,8 @@
     UI -> Backend: Save all data
     Backend -> Database: Save all data
 
-    note over STF, Database 
-        It should be possible to
-        reuse this data when a Consult
-        is converted to a Quote
+    note over STF, Database #LimeGreen
+        1. It should be possible to reuse this data when a Consult is converted to a Quote
+        2. Shouldn't booking the consult //<u>automatically place the Consult Details to the STF's calendar?</u>//
     end note
 @enduml

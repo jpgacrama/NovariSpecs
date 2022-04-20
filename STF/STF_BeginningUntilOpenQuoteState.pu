@@ -1,5 +1,5 @@
 @startuml
-    title STF: High-level Business Flow until //Open Quote// State
+    title STF: Beginning until //Open Quote// State
     start
     :STF clicks //Start a Job// button;
 
@@ -37,9 +37,9 @@
                 6. Additional Services;
 
             :STF sees a summary of his/her Quotation;
-            #SkyBlue:Quote now has a state of //Open Quote//;
             :STF clicks //Next// button;
             :STF sees the Done page;
+            #SkyBlue:Quote now has a state of //Open Quote//;
 
             note right #PaleVioletRed
                 STF can save the Open Quote

@@ -10,12 +10,9 @@
     participant "Database" as Database
 
     note over STF, UI #GreenYellow
-        1. It should be possible to automatically
-           get data from an existing Consultation
-
-        2. Data is every page is saved to database
-           so that the user doesn't have to type everything again
-           in case his connection got disconnected.
+        Data in every page is saved to database
+        so that the user doesn't have to type everything again
+        in case his connection got disconnected.
     end note
 
     group Job Page 
@@ -63,65 +60,48 @@
         Backend -> Database: Save data from this page
     end group
 
-    group Brief Page
-        UI -> UI: Show //Brief// page
-        STF -> UI: Select **one or multiple** items for the desired look and feel
+    group Styling Proposal Page
+        loop For ALL Rooms
+            STF -> UI: Add a Room
+            UI -> UI: //Expands to show the options to style a room//
+            STF -> UI: Click Button to select the desired //Look and Feel//
+            UI -> UI: //UI Opens the Brief Page//
 
-        note over STF, UI #PaleVioletRed
-            We need to know whether STF can
-            select multiple items for //Look and Feel// values.
-        end note
-        
-        STF -> UI: Writes notes regarding pages in Portfolio that
-        note over STF, UI #White
-            * Clients love
-            * Clients Do **NOT** love
-        end note
-
-        STF -> UI: Click //Next// button
-        UI -> Database: Save data from this page
+            group Brief Page
+                STF -> UI: Select **one or multiple** items for the desired look and feel
+                STF -> UI: Writes puts data regarding the following\n\t- Clients Love\n\t- Clients Do **NOT** love\n\t- Expected Demographic\n\t- Alterations
+                STF -> UI: Click //Next// button
+                UI -> Backend: Save data from this page
+                Backend -> Database: Save data from this page
+            end group
+        end loop
+        opt For all Optional Rooms
+            loop For all Optional Rooms
+                ref over STF, Database
+                    Algorithm follows the loop in //For **ALL** Rooms// Section 
+                end ref
+            end loop
+        end
     end group
 
-    group Styling Proposal Page
-        STF -> UI: Select desired **Mood Board**
-
-        note over STF, UI #PaleVioletRed
-            What is Mood Board?
-            How is it different from the
-            //Look and Feel// Section in the //Brief// page?
+    group Services
+        note over STF, Database
+            See Novari Operations Manual for the
+            list of Services and Bespoke Services
+            that clients can choose from
         end note
-
-        STF -> UI: Add all the desired rooms
-
-        note over STF, UI #PaleVioletRed
-            Need to know what is the difference between a //Room// 
-            and an //Optional Room//
-
-            Will this affect the final billing, one will show the price 
-            without the optional items, and one shows all of them?
-        end note
-
-        loop Each of the Rooms
-            STF -> UI: STF chooses furniture(s)
-        end
-
-        STF -> UI: Add all the additional Services required
 
         loop Each of the Services
             STF -> UI: Add information as to the type of service required
+            UI -> Backend: Save information
+            Backend -> Database: Save information            
         end
-
-        note over STF, UI #PaleVioletRed
-            What is so special about Bespoke Services?
-        end note
 
         loop Each of the //Bespoke// Services
             STF -> UI: Add information about each Bespoke Service required
+            UI -> Backend: Save information
+            Backend -> Database: Save information            
         end note
-
-        STF -> UI: Click //Next// button
-        UI -> Backend: Save data from this page
-        Backend -> Database: Save data from this page
     end group
 
     group Summary Page

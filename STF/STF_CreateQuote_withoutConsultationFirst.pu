@@ -127,5 +127,14 @@
             end group
         end
     end group
+
+    group Done Page
+        STF -> UI: Click //Copy Quote Link// button
+        STF -> UI: Click //Send Email to Client// button
+        UI -> UI: Show a sample Email Template
+        STF -> UI: Enter his/her client's email address
+        STF -> UI: Click //Send//
+        UI -> SMTP: Email is sent
+    end group
     
 @enduml

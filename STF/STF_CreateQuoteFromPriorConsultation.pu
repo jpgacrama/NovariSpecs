@@ -2,38 +2,57 @@
     title STF creates Quotes with data from a Prior Consultation
 
     actor "STF" as STF
-    
-    STF -> UI: Go to //Your Quotes & Consultations Page//
-    STF -> UI: Select Row with Status //Consultation//
-    UI -> UI: Opens //Book a Consult// Page
 
-    group Book a Consult Page
-        STF -> UI: Click //Book// button
-        UI -> Backend: Fetch data associated with the specific Consultation
-        Backend -> Database: Fetch data associated with the specific Consultation
-        Database -> Backend: Return data
-        Backend -> UI: Display data 
+    opt STF goes to Quotes Dashboard page
+        STF -> UI: Go to //Your Consultations Page//
+        STF -> UI: Select Row with Status //Consultation//
+        UI -> UI: Opens //Book a Consult// Page
 
-        UI -> STF: Shows details from Previous Consultation
-    end group
+        group Book a Consult Page
+            STF -> UI: Click //Book// button
+            UI -> Backend: Fetch data associated with the specific Consultation
+            Backend -> Database: Fetch data associated with the specific Consultation
+            Database -> Backend: Return data
+            Backend -> UI: Display data 
 
-    alt STF clicks Book
-        UI -> Backend: Update consultation to booking
-        Backend -> Database: Update consultation to booking
-        Database -> Backend: //Success//
-        Backend -> UI: //Success//
+            UI -> STF: Shows details from Previous Consultation
+        end group
 
-        UI -> UI: //Done// page is displayed
-        STF -> UI: Clicks //Push to Calendar//
+        alt STF clicks Book
+            UI -> Backend: Update consultation to booking
+            Backend -> Database: Update consultation to booking
+            Database -> Backend: //Success//
+            Backend -> UI: //Success//
 
-        note over STF, UI #LawnGreen
-            Isn't it better to automatically
-            send the consultation details to STF's calendar 
-            once he/she clicks //Book//?
-        end note
-    else STF clicks Cancel
-        note over STF, UI
-            UI displays //Your Quotes & Consultations// Page again
-        end note
+            UI -> UI: //Done// page is displayed
+            STF -> UI: Clicks //Push to Calendar//
+
+            note over STF, UI #LawnGreen
+                Isn't it better to automatically
+                send the consultation details to STF's calendar 
+                once he/she clicks //Book//?
+            end note
+        else STF clicks Cancel
+            note over STF, UI
+                UI displays //Your Quotes & Consultations// Page again
+            end note
+        end
+    else STF clicks //Start a Job// from the main screen
+        STF -> UI: Click //Start a Quote//
+        STF -> UI: Type the first few letters of client's name in the search bar
+        opt Prior data DOES NOT exist
+            ref over STF, Database
+                Refer to section //"Creating Quote **without** prior consultation"//
+            end
+        else Prior Data Exists
+            UI -> UI: A pop-up is displayed showing the client's details
+            STF -> UI: STF selects the desired client
+            UI -> Backend: Fetch data associated with the specific Consultation
+            Backend -> Database: Fetch data associated with the specific Consultation
+            Database -> Backend: Return data
+            Backend -> UI: Display data 
+            UI -> STF: Shows details from Previous Consultation
+
+        end
     end
 @enduml

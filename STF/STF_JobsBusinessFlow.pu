@@ -10,7 +10,7 @@
     fork
         if (STF wants to\nadd a room?) then (Yes)
             #GreenYellow:STF adds a room;
-
+            :STF adds items to the room;
             note left
                 Does this mean that when STF adds a room
                 which is **NOT** part of the original quote,
@@ -21,18 +21,8 @@
             :STF sticks to the\nnumber of rooms\nin the Quote;
         endif
     fork again
-        if (STF clicks //Client Quote?//) then (Yes)
+        if (STF clicks //Client Quote//) then (Yes)
             ://Your Styling Proposal// view is shown;
-            :STF clicks the //Accept Proposal// button;
-
-            note right #PaleVioletRed
-                **!!THIS IS WRONG!!** 
-                STF should not have this button.
-                Only client does.
-
-                Links to //Your Styling Proposal// have to be edited
-                to avoid confusion
-            end note
         else (No)
         endif
     fork again
@@ -51,6 +41,35 @@
                 There is no //Archived// status yet.
                 How should archived Jobs and/or Quotes be displayed?
                 Do they have a separate tab on the left of the main page?
+            end note
+        else (No)
+        endif
+
+    fork again 
+        if (STF clicks Brief Sheet) then (Yes)
+            :STF should see Brief Sheet;
+            note right #GreenYellow
+                How is this different from
+                the view shown in Client Quote?
+
+                Note that the look and feel 
+                is now associated with each room of the property.
+                The reason is that, in a house,
+                not every room should follow the same look and feel as everything else.
+            end note
+        else (No)
+        endif
+    fork again 
+        if (STF clicks Floor Plan) then (Yes)
+            :STF should see the Floor Plan;
+        else (No)
+        endif
+    fork again 
+        if (STF clicks Quoted Price) then (Yes)
+            :STF should see the Financial Breakdown;
+            note right #IndianRed
+                Financial Graphs are
+                **NOT** part of MVP
             end note
         else (No)
         endif

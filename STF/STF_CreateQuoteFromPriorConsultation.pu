@@ -23,8 +23,13 @@
         Database -> Backend: //Success//
         Backend -> UI: //Success//
 
-        note over STF, UI
-            //Done// page is displayed
+        UI -> UI: //Done// page is displayed
+        STF -> UI: Clicks //Push to Calendar//
+
+        note over STF, UI #LawnGreen
+            Isn't it better to automatically
+            send the consultation details to STF's calendar 
+            once he/she clicks //Book//?
         end note
     else STF clicks Cancel
         note over STF, UI

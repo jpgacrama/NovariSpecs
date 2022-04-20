@@ -23,7 +23,7 @@
             #OrangeRed:Consultation becomes //Pending//;
             note left #LightPink
                 //Pending// state is
-                not yet in wireframes;
+                not yet in wireframes
             end note
             stop
         else (No)
@@ -76,7 +76,7 @@
             #OrangeRed:Quote becomes //Pending//;
             note left #LightPink
                 //Pending// state is
-                not yet in wireframes;
+                not yet in wireframes
             end note
             stop
         else (No)
@@ -85,9 +85,13 @@
         if (Client accepts the quote?) then (Yes)
             :Client receives invoice;
             :Client pays for STF's service;
-            note #LightPink
+            note
                 Client already pays even though
                 the furnitures are not yet delivered?
+
+                No. STF technically pays for it before
+                everything gets delivered. **But for MVP,**
+                **we assume that client pays first.**
             end note
 
             #SkyBlue:Quote becomes a //Job//;
@@ -97,7 +101,7 @@
 
             note right #LightPink
                 //Rejected// state is
-                not in wireframes;
+                not in wireframes
             end note
         endif
 
@@ -116,16 +120,11 @@
         #GreenYellow:STF sends a summary of the
         quotation to Client;
 
-        note right #OrangeRed
-            Flow of wireframes leading to the view
-            where Client sees STF's proposal is **WRONG**
-        end note
-
         if (Client is undecided?) then (Yes)
             #OrangeRed:Quote becomes //Pending//;
             note left #LightPink
                 //Pending// state is
-                not yet in wireframes;
+                not yet in wireframes
             end note
             stop
         else (No)

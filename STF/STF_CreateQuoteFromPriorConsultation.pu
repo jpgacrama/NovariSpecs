@@ -43,7 +43,7 @@
         opt Prior data DOES NOT exist
             ref over STF, Database
                 Refer to section //"Creating Quote **without** prior consultation"//
-            end
+            end ref
         else Prior Data Exists
             UI -> UI: A pop-up is displayed showing the client's details
             STF -> UI: STF selects the desired client
@@ -52,7 +52,6 @@
             Database -> Backend: Return data
             Backend -> UI: Display data 
             UI -> STF: Shows details from Previous Consultation
-
         end
     end
 @enduml

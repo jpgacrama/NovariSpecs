@@ -13,6 +13,8 @@
         Data in every page is saved to database
         so that the user doesn't have to type everything again
         in case his connection got disconnected.
+
+        UI should show breadcrumbs.
     end note
 
     group Job Page 

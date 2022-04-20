@@ -28,17 +28,10 @@
         :STF sends an email to Client containing
         the //Quote Link//;
 
-        note left #OrangeRed
-            It is **NOT** possible to
-            send an email from the website YET. 
-
-            However, I need to clarify this expectation.
-        end note
-
         if (Client approves quote?) then (Yes)
             #SkyBlue:Quote becomes a //Job//;
         else (No)
-            #OrangeRed:Quote becomes //Rejected//;
+            #Orange:Quote becomes //Rejected//;
 
             note right
                 There is no //Rejected// state yet.

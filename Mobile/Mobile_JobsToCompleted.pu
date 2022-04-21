@@ -15,9 +15,6 @@
         both STF and HUB's views.
     end note
     
-    :HUB staff checks the
-    items needed for the job;
-
     :HUB staff selects items from shelves,
     scans them, and places them into box(es);
 
@@ -29,24 +26,24 @@
     #SpringGreen:HUB Staff finishes selecting items;
 
     :HUB staff will assign the Job 
-    **and all items he/she has picked**
-    to a specific truck bay;
+    and all items he/she has picked for it
+    to a specified truck bay;
 
     #LightBlue:Job state will change to //Ready for Delivery//;
 
-    #SpringGreen:Truck arrives and waits at the specific truck bay;
+    #SpringGreen:Truck arrives and waits at the specified truck bay;
 
     :HUB staff will scan the items
     and place them in the truck;
 
-    #SpringGreen:Truck Driver reaches Job Site;
+    #SpringGreen:Truck Driver drives to Job Site;
     
     :HUB Staff scans the items which
     will be offloaded to the Job Site;
 
     note right
-        There is another HUB Staff
-        other than the driver who accompanies him/her to the site.
+        There is a HUB Staff
+        who accompanies the driver.
     end note
 
     #LightBlue:Job state will change to //On Job Site//;
@@ -54,9 +51,15 @@
     #SpringGreen:Client's event is finished;
     :Truck driver arrives on the Job Site;
     :HUB staff scans the items and loads them into the truck;
+
+    if(Are some items missing?) then (Yes)
+        #PaleVioletRed:HUB Staff marks the item as //Missing//;
+        else(No)
+    endif
+
     #LightBlue:Job state will change to //Pick-up//;
 
-    :Truck driver arrived at the HUB;
+    #SpringGreen:Truck driver returned to HUB;
     :HUB staff scans all the items as he/she unloads them;
     #LightBlue:Job state will change to //Returned//;
 
@@ -64,12 +67,9 @@
         There is no //Returned// Job state.
     end note
 
-    if(Are some items missing?) then (Yes)
-        #PaleVioletRed:HUB Staff marks the item as //Missing//;
-
-    elseif(Do some items need repairing?) then (Yes)
+    if(Do some items need repairing?) then (Yes)
         #PaleVioletRed:HUB Staff marks the item as //Needing repair//;
-    else(All loaned items\nare returned\nin good condition)
+    else(No)
     endif
 
     #LightBlue:Job state changes to //Completed//;

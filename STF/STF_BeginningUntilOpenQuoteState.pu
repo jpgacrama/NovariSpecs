@@ -4,13 +4,37 @@
     :STF clicks //Start a Job// button;
 
     if (Prior Consultation exists?) then (Yes)
-        :Go to //Your Quotes & Consultations Page//;
+        :Go to //Consultations Page//;
         :Select Row with //Consultation// as its state;
-        :STF clicks //Save to Calendar// button;
-        :STF should be able to view
-        this Consultation
-        in his/her calendar;
-        #SkyBlue:This remains in //Consultation// state;
+        if (STF wishes to convert this to Quote?) then (Yes)
+            :STF enters the following:
+                1. Client(s) Details - **//Pre-filled aleady//**
+                2. Agent / Referrer details - **//Pre-filled aleady//**
+                3. Install and Access details - **//Pre-filled aleady//**
+                4. Information about the desired look and feel
+                5. Styling Proposal
+                6. Additional Services;
+
+            note left
+                There is an //Install and Access// notes 
+                when making a Consultation.
+                I think this should be
+                reused when making Quotes.
+            end note
+
+            :STF sees a summary of his/her Quotation;
+            :STF clicks //Next// button;
+            :STF sees the Done page;
+            #SkyBlue:Quote now has an //Open Quote// state;
+
+            note left
+                STF can save the Open Quote
+                to his/her calendar using the
+                buttons from the Done Page
+            end note
+        else (No)
+            #SkyBlue:This remains in //Consultation// state;
+        endif
         stop
     else (No. So STF clicks //Start a Job//)
         if (Book a Consult?) then (Yes)
@@ -24,7 +48,7 @@
             :STF should be able to view
             this Consultation
             in his/her calendar;
-            #SkyBlue:This remains in //Consultation// state;
+            #SkyBlue:This is now in //Consultation// state;
             stop
 
         else (No. STF clicks //Start a Quote//)
@@ -39,14 +63,14 @@
             :STF sees a summary of his/her Quotation;
             :STF clicks //Next// button;
             :STF sees the Done page;
-            #SkyBlue:Quote now has a state of //Open Quote//;
+            #SkyBlue:Quote now has an //Open Quote// state;
 
-            note right #PaleVioletRed
-                STF can save the Open Quote
-                to his/her calendar using the
-                buttons from the Done Page
+            note right
+                STF can do the following from the Done Page:
+                    1. Save the Quote to his/her calendar
+                    2. Send the Quote link to his/her client
+                    3. View all Quotes
             end note
-
             stop
         endif
     endif
